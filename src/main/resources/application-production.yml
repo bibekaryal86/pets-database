@@ -1,0 +1,5 @@
+#Spring Boot Port
+server:
+  servlet:
+    # port: 8002 #no need to set port for GCP App Engine, it runs on 8080 and is adequate for the app
+    context-path: /pets-database

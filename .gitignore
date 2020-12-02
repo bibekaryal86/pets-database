@@ -1,0 +1,11 @@
+# Ignore gradle folder
+.gradle
+# Ignore idea folder
+.idea
+# Ignore build folder
+build
+# Ignore lombok config
+/lombok.config
+# Ignore GCP config
+/src/main/appengine/*.jar
+/src/main/appengine/app-mongodb.yaml

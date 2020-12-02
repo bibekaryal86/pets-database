@@ -1,0 +1,10 @@
+#CF Application Info
+application:
+  name: pets-database
+  instance: 1
+
+#mongodb
+spring:
+  data:
+    mongodb:
+      database: pets_database

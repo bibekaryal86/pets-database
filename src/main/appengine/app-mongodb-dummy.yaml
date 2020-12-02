@@ -1,0 +1,4 @@
+env_variables:
+  MONGODB_ACC_NAME: "abcd"
+  MONGODB_USR_NAME: "efgh"
+  MONGODB_USR_PWD: "ijkl"

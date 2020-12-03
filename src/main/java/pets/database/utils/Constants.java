@@ -22,6 +22,9 @@ public class Constants {
     public static final String FIELD_NAME_ID = "id";
     public static final String FIELD_NAME_USERNAME = "username";
 
+    public static final String BASIC_AUTH_USR = "BASIC_AUTH_USR";
+    public static final String BASIC_AUTH_PWD = "BASIC_AUTH_PWD";
+
     public static final String MONGODB_ACC_NAME = "MONGODB_ACC_NAME";
     public static final String MONGODB_USR_NAME = "MONGODB_USR_NAME";
     public static final String MONGODB_USR_PWD = "MONGODB_USR_PWD";

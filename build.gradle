@@ -22,8 +22,8 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
 
-    id "org.springframework.boot" version "2.3.0.RELEASE"
-    id "io.freefair.lombok" version "5.1.0"
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.freefair.lombok' version '5.1.0'
 }
 
 repositories {
@@ -40,12 +40,13 @@ bootJar {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator:2.3.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.3.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.3.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.3.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest:2.3.0.RELEASE'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'ch.qos.logback:logback-core:1.2.3'
-    implementation "io.springfox:springfox-boot-starter:3.0.0"
-    implementation "io.springfox:springfox-swagger-ui:3.0.0"
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
     testImplementation('org.springframework.boot:spring-boot-starter-test:2.3.0.RELEASE') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

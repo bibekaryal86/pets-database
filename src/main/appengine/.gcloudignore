@@ -17,3 +17,6 @@
 target/
 
 # THIS FILE IS IGNORED BECAUSE THE PROJECT USES JAR FILE TO DIRECTLY UPLOAD TO GCP
+
+# Ignore Dummy app-credentials
+app-credentials-dummy.yaml

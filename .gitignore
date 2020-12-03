@@ -8,4 +8,4 @@ build
 /lombok.config
 # Ignore GCP config
 /src/main/appengine/*.jar
-/src/main/appengine/app-mongodb.yaml
+/src/main/appengine/app-credentials.yaml

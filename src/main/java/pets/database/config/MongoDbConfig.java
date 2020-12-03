@@ -4,8 +4,6 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.stereotype.Component;
@@ -17,8 +15,6 @@ import static pets.database.utils.Constants.*;
 
 @Component
 public class MongoDbConfig extends AbstractMongoClientConfiguration {
-
-    private static final Logger logger = LoggerFactory.getLogger(MongoDbConfig.class);
 
     @Value("${spring.data.mongodb.database}")
     private String database;
@@ -40,12 +36,11 @@ public class MongoDbConfig extends AbstractMongoClientConfiguration {
     }
 
     private Map<String, String> getMongodbConfig() {
-        logger.info("Mongo DB Config!!!");
 
         Map<String, String> mongoConfigMap = new HashMap<>();
 
-        // for running locally
         if (System.getProperty(MONGODB_ACC_NAME) != null) {
+            // for running locally
             mongoConfigMap.put(MONGODB_ACC_NAME, System.getProperty(MONGODB_ACC_NAME));
             mongoConfigMap.put(MONGODB_USR_NAME, System.getProperty(MONGODB_USR_NAME));
             mongoConfigMap.put(MONGODB_USR_PWD, System.getProperty(MONGODB_USR_PWD));
@@ -54,8 +49,6 @@ public class MongoDbConfig extends AbstractMongoClientConfiguration {
             mongoConfigMap.put(MONGODB_ACC_NAME, System.getenv(MONGODB_ACC_NAME));
             mongoConfigMap.put(MONGODB_USR_NAME, System.getenv(MONGODB_USR_NAME));
             mongoConfigMap.put(MONGODB_USR_PWD, System.getenv(MONGODB_USR_PWD));
-        } else {
-            logger.error("Mongo DB Config Error!!!");
         }
 
         return mongoConfigMap;

@@ -15,4 +15,4 @@ automatic_scaling:
 env_variables:
   SPRING_PROFILES_ACTIVE: "production"
 includes:
-  - app-mongodb.yaml
+  - app-credentials.yaml

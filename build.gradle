@@ -47,6 +47,7 @@ dependencies {
     implementation 'ch.qos.logback:logback-core:1.2.3'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'com.google.cloud:google-cloud-secretmanager:1.2.5'
     testImplementation('org.springframework.boot:spring-boot-starter-test:2.3.0.RELEASE') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

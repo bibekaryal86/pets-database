@@ -6,8 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import pets.database.service.GcpSecretManagerService;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.http.HttpMethod.GET;
@@ -17,6 +17,9 @@ import static pets.database.utils.Constants.BASIC_AUTH_USR;
 
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private GcpSecretManagerService gcpSecretManagerService;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -45,26 +48,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        Map<String, String> authConfig = getAuthConfig();
+        Map<String, String> authConfig = gcpSecretManagerService.getAuthConfig();
         auth.inMemoryAuthentication()
                 .withUser(authConfig.get(BASIC_AUTH_USR))
                 .password("{noop}".concat(authConfig.get(BASIC_AUTH_PWD)))
                 .roles("USER");
-    }
-
-    private Map<String, String> getAuthConfig() {
-        Map<String, String> authConfigMap = new HashMap<>();
-
-        if (System.getProperty(BASIC_AUTH_USR) != null) {
-            // for running locally
-            authConfigMap.put(BASIC_AUTH_USR, System.getProperty(BASIC_AUTH_USR));
-            authConfigMap.put(BASIC_AUTH_PWD, System.getProperty(BASIC_AUTH_PWD));
-        } else if (System.getenv(BASIC_AUTH_USR) != null) {
-            // for GCP
-            authConfigMap.put(BASIC_AUTH_USR, System.getenv(BASIC_AUTH_USR));
-            authConfigMap.put(BASIC_AUTH_PWD, System.getenv(BASIC_AUTH_PWD));
-        }
-
-        return authConfigMap;
     }
 }

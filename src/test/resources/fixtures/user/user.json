@@ -1,0 +1,13 @@
+{
+  "id": "user-id",
+  "username": "user-name",
+  "firstName": "first-name",
+  "lastName": "last-name",
+  "streetAddress": "street-address",
+  "city": "city",
+  "state": "state",
+  "zipcode": "zip-code",
+  "email": "email",
+  "phone": "phone",
+  "status": "status"
+}

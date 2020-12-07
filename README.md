@@ -33,3 +33,6 @@ Three apps from the following repos need to be running together:
 * https://github.com/bibekaryal86/pets-database
 * https://github.com/bibekaryal86/pets-service
 * https://github.com/bibekaryal86/pets-ui-mpa
+
+Deployed to:
+* GCP: https://pets-database.appspot.com/pets-database/tests/ping

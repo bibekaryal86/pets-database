@@ -28,3 +28,8 @@ mainly in application-production.yml and logback.yml
 Instead of environment variables, the app can also use GCP Secret Manager (preferred/recommended) to access DB
 credentials when running on Google App Engine. See branch google-secret-manager. One caveat of using Secret Manager is
 that increases the jar file (32MB -> 60MB) and JVM memory usage (290MB -> 390MB). So maybe not preferable for Free tier.
+
+Three apps from the following repos need to be running together:
+* https://github.com/bibekaryal86/pets-database
+* https://github.com/bibekaryal86/pets-service
+* https://github.com/bibekaryal86/pets-ui-mpa

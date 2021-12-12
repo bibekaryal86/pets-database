@@ -1,0 +1,5 @@
+#Spring Boot Port
+server:
+  port: 8002
+  servlet:
+    context-path: /pets-database

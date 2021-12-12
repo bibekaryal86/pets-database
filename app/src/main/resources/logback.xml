@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration debug="true">
+    <springProfile name="development">
+        <property name="LOG_FILE" value="/JAVA/logs/pets-database/pets-database"/>
+
+        <appender name="APPLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_FILE}.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <FileNamePattern>${LOG_FILE}_%d{yyyy-MM-dd}_%i.log</FileNamePattern>
+                <!-- keep 14 days' worth of history -->
+                <maxHistory>14</maxHistory>
+                <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <!-- or whenever the File size reaches 10MB -->
+                    <maxFileSize>10MB</maxFileSize>
+                </timeBasedFileNamingAndTriggeringPolicy>
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %-5level %c{1} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="org.mongodb.driver" level="WARN" additivity="false">
+            <appender-ref ref="APPLOG"/>
+        </logger>
+
+        <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+            <level value="APPLOG" />
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="APPLOG"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="production">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} [%thread] %-5level %c{1} - %msg%n</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="org.mongodb.driver" level="WARN" additivity="false">
+            <appender-ref ref="STDOUT"/>
+        </logger>
+
+        <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+            <level value="STDOUT" />
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="docker">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+        </root>
+    </springProfile>
+
+</configuration>

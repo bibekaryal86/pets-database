@@ -11,3 +11,4 @@ ENTRYPOINT ["java","-jar", \
 #"-DBASIC_AUTH_USR=another_username", \
 #"-DBASIC_AUTH_PWD=another_password", \
 "/pets-database.jar"]
+# provide environment variables in docker-compose

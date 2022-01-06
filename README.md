@@ -12,10 +12,10 @@ To run the app, we need to supply the following environment variables:
     * BASIC_AUTH_PWD (password to enforce spring security)
 * MongoDB Database Details:
     * MONGODB_ACC_NAME (mongodb collection name)
-    * MONGODB_USR_NAME (mongodb user name)
+    * MONGODB_USR_NAME (mongodb username)
     * MONGODB_USR_PASSWORD (mongodb password)
 * The final run command looks like this:
-    * java -jar -D"SPRING_PROFILES_ACTIVE=development" -DBASIC_AUTH_USR=some_username -DBASIC_AUTH_PWD=some_password
+    * java -jar -DSPRING_PROFILES_ACTIVE=development -DBASIC_AUTH_USR=some_username -DBASIC_AUTH_PWD=some_password
       -DMONGODB_ACC_NAME=account_name -DMONGODB_USR_NAME=another_username -DMONGODB_USR_PWD=another_password JARFILE.jar
 
 This app is one of the five apps that form the PETS (Personal Expenses Tracking System) application:

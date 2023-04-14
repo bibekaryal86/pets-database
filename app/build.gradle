@@ -7,20 +7,18 @@
  * This project uses @Incubating APIs which are subject to change.
  */
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.0.RELEASE")
-    }
-}
-
 plugins {
     id 'java'
     id 'application'
-    id 'org.springframework.boot' version '2.3.0.RELEASE'
-    id 'io.freefair.lombok' version '5.1.0'
+    id 'io.freefair.lombok' version '8.0.1'
+    id 'org.springframework.boot' version '3.0.5'
+    id 'com.diffplug.spotless' version '6.18.0'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
@@ -32,22 +30,23 @@ bootJar {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.3.0.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.0.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-security:2.3.0.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.3.0.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest:2.3.0.RELEASE'
-    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:2.2.8.RELEASE'
-    implementation 'ch.qos.logback:logback-classic:1.2.3'
-    implementation 'ch.qos.logback:logback-core:1.2.3'
-    implementation 'net.logstash.logback:logstash-logback-encoder:6.6'
+    def springVersion = "3.0.5"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:$springVersion"
+    implementation "org.springframework.boot:spring-boot-starter-web:$springVersion"
+    implementation "org.springframework.boot:spring-boot-starter-security:$springVersion"
+    implementation "org.springframework.boot:spring-boot-starter-data-mongodb:$springVersion"
+    implementation "org.springframework.boot:spring-boot-starter-data-rest:$springVersion"
+    implementation 'io.micrometer:micrometer-tracing-bridge-otel:1.0.4'
+    implementation 'ch.qos.logback:logback-classic:1.4.6'
+    implementation 'ch.qos.logback:logback-core:1.4.6'
+    implementation 'net.logstash.logback:logstash-logback-encoder:7.3'
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
-    testImplementation('org.springframework.boot:spring-boot-starter-test:2.3.0.RELEASE') {
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion") {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
 }
 
 configurations {
@@ -57,4 +56,11 @@ configurations {
 
 application {
     mainClass.set('pets.database.App')
+}
+
+spotless {
+    java {
+        removeUnusedImports()
+        googleJavaFormat()
+    }
 }

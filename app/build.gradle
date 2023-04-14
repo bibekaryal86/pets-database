@@ -30,7 +30,7 @@ bootJar {
 }
 
 dependencies {
-    def springVersion = "3.0.5"   // also update plugin
+    def springVersion = "3.0.5"
     implementation "org.springframework.boot:spring-boot-starter-actuator:$springVersion"
     implementation "org.springframework.boot:spring-boot-starter-web:$springVersion"
     implementation "org.springframework.boot:spring-boot-starter-security:$springVersion"

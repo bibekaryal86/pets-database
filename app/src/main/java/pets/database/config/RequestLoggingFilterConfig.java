@@ -1,10 +1,9 @@
 package pets.database.config;
 
+import java.util.function.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
-
-import java.util.function.Predicate;
 
 @Configuration
 public class RequestLoggingFilterConfig {

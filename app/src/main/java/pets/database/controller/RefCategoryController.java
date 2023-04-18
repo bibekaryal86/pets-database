@@ -1,5 +1,11 @@
 package pets.database.controller;
 
+import static java.lang.String.format;
+import static java.util.Collections.emptyList;
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.util.StringUtils.hasText;
+
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,12 +20,6 @@ import pets.database.model.RefCategoryRequest;
 import pets.database.model.RefCategoryResponse;
 import pets.database.model.Status;
 import pets.database.service.RefCategoryService;
-
-import static java.lang.String.format;
-import static java.util.Collections.emptyList;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.util.StringUtils.hasText;
 
 @RestController
 @RequestMapping("/refcategories")

@@ -1,5 +1,10 @@
 package pets.database.config;
 
+import static pets.database.utils.Constants.BASIC_AUTH_PWD;
+import static pets.database.utils.Constants.BASIC_AUTH_USR;
+
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -11,12 +16,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static pets.database.utils.Constants.BASIC_AUTH_PWD;
-import static pets.database.utils.Constants.BASIC_AUTH_USR;
 
 @Configuration
 @EnableWebSecurity

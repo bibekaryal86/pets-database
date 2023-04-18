@@ -1,18 +1,25 @@
 package pets.database.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pets.database.model.RefTransactionTypeRequest;
+import pets.database.model.RefTransactionTypeResponse;
+import pets.database.model.Status;
+import pets.database.service.RefTransactionTypeService;
+
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import pets.database.model.RefTransactionTypeRequest;
-import pets.database.model.RefTransactionTypeResponse;
-import pets.database.model.Status;
-import pets.database.service.RefTransactionTypeService;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/reftransactiontypes")
@@ -28,7 +35,7 @@ public class RefTransactionTypeController {
     return response(refTransactionTypeService.getAllRefTransactionTypes());
   }
 
-  @ApiIgnore
+  @Hidden
   @GetMapping(value = "/reftransactiontype/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefTransactionTypeResponse> getRefTransactionTypeById(
       @PathVariable("id") String id) {
@@ -39,7 +46,7 @@ public class RefTransactionTypeController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PostMapping(value = "/reftransactiontype", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefTransactionTypeResponse> saveNewRefTransactionType(
       @RequestBody RefTransactionTypeRequest refTransactionTypeRequest) {
@@ -51,7 +58,7 @@ public class RefTransactionTypeController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PutMapping(value = "/reftransactiontype/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefTransactionTypeResponse> updateRefTransactionType(
       @PathVariable("id") String id,
@@ -64,7 +71,7 @@ public class RefTransactionTypeController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @DeleteMapping(value = "/reftransactiontype/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefTransactionTypeResponse> deleteRefTransactionType(
       @PathVariable("id") String id) {

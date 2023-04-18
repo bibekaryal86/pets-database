@@ -40,8 +40,7 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.4.6'
     implementation 'ch.qos.logback:logback-core:1.4.6'
     implementation 'net.logstash.logback:logstash-logback-encoder:7.3'
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
-    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion") {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

@@ -1,9 +1,10 @@
 package pets.database.config;
 
-import java.util.function.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
+
+import java.util.function.Predicate;
 
 @Configuration
 public class RequestLoggingFilterConfig {
@@ -17,7 +18,7 @@ public class RequestLoggingFilterConfig {
     filter.setIncludeQueryString(true);
     filter.setIncludePayload(false); // can't mask passwords
     // filter.setMaxPayloadLength(10000);    // not needed because payload is not included
-    filter.setIncludeHeaders(true);
+    filter.setIncludeHeaders(false);
     filter.setHeaderPredicate(getHeaderPredicate());
     filter.setAfterMessagePrefix("[REQUEST END] : ");
     return filter;

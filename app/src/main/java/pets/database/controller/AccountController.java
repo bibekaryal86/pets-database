@@ -1,18 +1,25 @@
 package pets.database.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pets.database.model.AccountRequest;
+import pets.database.model.AccountResponse;
+import pets.database.model.Status;
+import pets.database.service.AccountService;
+
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import pets.database.model.AccountRequest;
-import pets.database.model.AccountResponse;
-import pets.database.model.Status;
-import pets.database.service.AccountService;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/accounts")
@@ -23,7 +30,7 @@ public class AccountController {
     this.accountService = accountService;
   }
 
-  @ApiIgnore
+  @Hidden
   @GetMapping(value = "/account", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<AccountResponse> getAllAccounts() {
     return response(accountService.getAllAccounts());
@@ -38,7 +45,7 @@ public class AccountController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @GetMapping(value = "/account/user/{username}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<AccountResponse> getAccountsByUsername(
       @PathVariable("username") String username) {
@@ -49,7 +56,7 @@ public class AccountController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PostMapping(value = "/account", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<AccountResponse> saveNewAccount(
       @RequestBody AccountRequest accountRequest) {
@@ -66,7 +73,7 @@ public class AccountController {
    * @return Account object with updated values
    * @apiNote used to update ancillary attributes like description, type, bank and status
    */
-  @ApiIgnore
+  @Hidden
   @PutMapping(value = "/account/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<AccountResponse> updateAccount(
       @PathVariable("id") String id, @RequestBody AccountRequest accountRequest) {
@@ -82,7 +89,7 @@ public class AccountController {
    * @return number of rows deleted
    * @apiNote account should not be deleted, the status should be changed to INACTIVE
    */
-  @ApiIgnore
+  @Hidden
   @DeleteMapping(value = "/account/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<AccountResponse> deleteAccount(@PathVariable("id") String id) {
     if (!hasText(id)) {

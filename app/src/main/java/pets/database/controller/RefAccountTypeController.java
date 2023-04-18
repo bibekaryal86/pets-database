@@ -1,18 +1,25 @@
 package pets.database.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pets.database.model.RefAccountTypeRequest;
+import pets.database.model.RefAccountTypeResponse;
+import pets.database.model.Status;
+import pets.database.service.RefAccountTypeService;
+
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import pets.database.model.RefAccountTypeRequest;
-import pets.database.model.RefAccountTypeResponse;
-import pets.database.model.Status;
-import pets.database.service.RefAccountTypeService;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/refaccounttypes")
@@ -38,7 +45,7 @@ public class RefAccountTypeController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PostMapping(value = "/refaccounttype", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefAccountTypeResponse> saveNewRefAccountType(
       @RequestBody RefAccountTypeRequest refAccountTypeRequest) {
@@ -49,7 +56,7 @@ public class RefAccountTypeController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PutMapping(value = "/refaccounttype/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefAccountTypeResponse> updateRefAccountType(
       @PathVariable("id") String id, @RequestBody RefAccountTypeRequest refAccountTypeRequest) {
@@ -60,7 +67,7 @@ public class RefAccountTypeController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @DeleteMapping(value = "/refaccounttype/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefAccountTypeResponse> deleteRefAccountType(
       @PathVariable("id") String id) {

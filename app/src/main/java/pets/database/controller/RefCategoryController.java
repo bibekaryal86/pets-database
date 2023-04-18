@@ -1,18 +1,25 @@
 package pets.database.controller;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pets.database.model.RefCategoryRequest;
+import pets.database.model.RefCategoryResponse;
+import pets.database.model.Status;
+import pets.database.service.RefCategoryService;
+
 import static java.lang.String.format;
 import static java.util.Collections.emptyList;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import pets.database.model.RefCategoryRequest;
-import pets.database.model.RefCategoryResponse;
-import pets.database.model.Status;
-import pets.database.service.RefCategoryService;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/refcategories")
@@ -37,7 +44,7 @@ public class RefCategoryController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PostMapping(value = "/refcategory", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefCategoryResponse> saveNewRefCategory(
       @RequestBody RefCategoryRequest refCategoryRequest) {
@@ -48,7 +55,7 @@ public class RefCategoryController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PutMapping(value = "/refcategory/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefCategoryResponse> updateRefCategory(
       @PathVariable("id") String id, @RequestBody RefCategoryRequest refCategoryRequest) {
@@ -59,7 +66,7 @@ public class RefCategoryController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @DeleteMapping(value = "/refcategory/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefCategoryResponse> deleteRefCategory(@PathVariable("id") String id) {
     if (!hasText(id)) {

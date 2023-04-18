@@ -1,59 +1,46 @@
 package pets.database.config;
 
-import static springfox.documentation.builders.PathSelectors.regex;
-
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import pets.database.exception.ResourceNotFoundException;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Collections;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
-  @Bean
-  public Docket docket() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        .apiInfo(apiInfo())
-        .select()
-        .paths(
-            regex(
-                ".*/accounts.*|.*/refaccounttypes.*|.*/refbanks.*|.*/refcategories.*|.*/refcategorytypes.*|.*/refmerchants.*"))
-        .build();
-  }
 
-  private ApiInfo apiInfo() {
-    return new ApiInfoBuilder()
-        .title("Database Layer fo PETS App")
-        .description("Database Layer for PETS App for MongoDB Repository")
-        .contact(new Contact("Bibek Aryal", "", ""))
-        .license("Personal Use Only")
-        .version("1.0.1")
-        .build();
+  private static final String AUTH_TYPE = "basicAuth";
+
+  @Bean
+  public OpenAPI openAPI() {
+    return new OpenAPI()
+        .components(
+            new Components()
+                .addSecuritySchemes(
+                    AUTH_TYPE, new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("basic")))
+        .security(Collections.singletonList(new SecurityRequirement().addList(AUTH_TYPE)))
+        .info(
+            new Info()
+                .title("Database Layer fo PETS App")
+                .description("Database Layer for PETS App for MongoDB Repository")
+                .contact(new Contact().name("Bibek Aryal"))
+                .license(new License().name("Personal Use Only"))
+                .version("1.0.1"));
   }
 
   @Controller
   public static class SwaggerRedirectControllerDevelopment {
     @GetMapping("/")
     public String redirectToSwagger() {
-      return "redirect:/swagger-ui/";
-    }
-  }
-
-  @Controller
-  @Profile(value = "production")
-  public static class SwaggerRedirectControllerProduction {
-    @GetMapping("/swagger-ui")
-    public ResponseEntity<ResourceNotFoundException> redirectFromSwagger() {
-      throw new ResourceNotFoundException("Swagger Not Available!!!");
+      return "redirect:/swagger-ui/index.html";
     }
   }
 }

@@ -6,13 +6,20 @@ import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pets.database.model.RefBankRequest;
 import pets.database.model.RefBankResponse;
 import pets.database.model.Status;
 import pets.database.service.RefBankService;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/refbanks")
@@ -37,7 +44,7 @@ public class RefBankController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PostMapping(value = "/refbank", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefBankResponse> saveNewRefBank(
       @RequestBody RefBankRequest refBankRequest) {
@@ -48,7 +55,7 @@ public class RefBankController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PutMapping(value = "/refbank/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefBankResponse> updateRefBank(
       @PathVariable("id") String id, @RequestBody RefBankRequest refBankRequest) {
@@ -59,7 +66,7 @@ public class RefBankController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @DeleteMapping(value = "/refbank/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefBankResponse> deleteRefBank(@PathVariable("id") String id) {
     if (!hasText(id)) {

@@ -3,3 +3,7 @@ spring:
   data:
     mongodb:
       database: pets_database
+
+springdoc:
+  paths-to-exclude: /users/**, /transactions/**, /accounts/**
+  show-actuator: true

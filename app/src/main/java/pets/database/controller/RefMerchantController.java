@@ -6,13 +6,20 @@ import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.util.StringUtils.hasText;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pets.database.model.RefMerchantRequest;
 import pets.database.model.RefMerchantResponse;
 import pets.database.model.Status;
 import pets.database.service.RefMerchantService;
-import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/refmerchants")
@@ -53,7 +60,7 @@ public class RefMerchantController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PostMapping(value = "/refmerchant", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefMerchantResponse> saveNewRefMerchant(
       @RequestBody RefMerchantRequest refMerchantRequest) {
@@ -64,7 +71,7 @@ public class RefMerchantController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @PutMapping(value = "/refmerchant/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefMerchantResponse> updateRefMerchant(
       @PathVariable("id") String id, @RequestBody RefMerchantRequest refMerchantRequest) {
@@ -75,7 +82,7 @@ public class RefMerchantController {
     }
   }
 
-  @ApiIgnore
+  @Hidden
   @DeleteMapping(value = "/refmerchant/id/{id}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<RefMerchantResponse> deleteRefMerchant(@PathVariable("id") String id) {
     if (!hasText(id)) {

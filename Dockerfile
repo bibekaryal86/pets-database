@@ -1,15 +1,17 @@
-FROM eclipse-temurin:17-jre-alpine
-RUN adduser --system --group springdocker
+# Build
+FROM gradle:8.10-jdk21-alpine AS build
+WORKDIR /app
+COPY app/build.gradle .
+COPY app/src /app/src
+RUN gradle --no-daemon clean build
+
+# Deploy
+FROM eclipse-temurin:21-jre-alpine
+RUN addgroup -S springdocker
+RUN adduser -S springdocker -G springdocker
 USER springdocker:springdocker
-ARG JAR_FILE=app/build/libs/pets-database.jar
-COPY ${JAR_FILE} pets-database.jar
-ENTRYPOINT ["java","-jar", \
-#"-DSPRING_PROFILES_ACTIVE=docker", \
-#"-DTZ=America/Denver", \
-#"-DMONGODB_ACC_NAME=some_account_name", \
-#"-DMONGODB_USR_NAME=some_username", \
-#"-DMONGODB_USR_PWD=some_password", \
-#"-DBASIC_AUTH_USR=another_username", \
-#"-DBASIC_AUTH_PWD=another_password", \
-"/pets-database.jar"]
+WORKDIR /app
+COPY --from=build /app/build/libs/pets-database.jar .
+EXPOSE 8080
+ENTRYPOINT ["java","-jar", "pets-database.jar"]
 # provide environment variables in docker-compose

@@ -10,7 +10,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'io.freefair.lombok' version '8.10'
+    id 'io.freefair.lombok' version '8.10.2'
     id 'org.springframework.boot' version '3.3.4'
     id 'com.diffplug.spotless' version '6.25.0'
 }
@@ -46,8 +46,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springVersion") {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.2'
 }
 
 configurations {

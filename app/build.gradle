@@ -59,6 +59,10 @@ application {
     mainClass.set('pets.database.App')
 }
 
+test {
+    useJUnitPlatform() // This is essential for JUnit 5
+}
+
 spotless {
     java {
         removeUnusedImports()
